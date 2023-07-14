@@ -17,4 +17,8 @@ Rails.application.routes.draw do
   get '/course/:id', to: 'courses#show'
   delete '/course/:id', to: 'courses#destroy'
 
+  get 'videos', to: 'videos#index'
+  get 'videos/:file_name', to: 'videos#show', as: 'video_detail'
+  get 'videos/create', to: 'videos#create', as: 'video_create'
+  post 'videos/store', to: 'videos#store'
 end
