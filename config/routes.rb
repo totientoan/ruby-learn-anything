@@ -10,4 +10,9 @@ Rails.application.routes.draw do
   # authenticate :jwt_middleware do
   #   post '/auth/google_login2', to: 'sessions#google_login2'
   # end
+
+  get 'videos', to: 'videos#index'
+  get 'videos/:file_name', to: 'videos#show', as: 'video_detail'
+  get 'videos/create', to: 'videos#create', as: 'video_create'
+  post 'videos/store', to: 'videos#store'
 end
