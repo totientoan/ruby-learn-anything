@@ -48,7 +48,7 @@ end
 
 gem 'mysql2'
 gem 'google-id-token'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test, :production]
 gem 'active_model_serializers'
 gem 'jwt'
 
