@@ -10,11 +10,21 @@ default: &default
   # timeout: 5000
   adapter: mysql2
   encoding: utf8
-  username: root
-  password: root
-  host: localhost
-  database: login_gg
+  username: b669f0f0843ada
+  password: 17ce4030
+  host: mysql://b669f0f0843ada:17ce4030@us-cdbr-east-06.cleardb.net/heroku_482c557b814620c?reconnect=true
+  database: heroku_482c557b814620c
 
 development:
   <<: *default
-  database: login_gg
+  database: heroku_482c557b814620c
+
+production:
+  <<: *default
+  database: heroku_482c557b814620c
+  username: b669f0f0843ada
+  password: 17ce4030
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
