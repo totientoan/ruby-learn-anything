@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
     def google_login
         client_id = ENV['google_client_id']
         client_secret = ENV['google_client_secret']
-        id_token = params[:id_token]
         access_token = params[:access_token]
 
         begin
@@ -24,8 +23,7 @@ class SessionsController < ApplicationController
                 # Set additional attributes based on your requirements
             end
             user.save()
-
-            token = JWT.encode({ user_id: user.id }, Rails.application.secrets.secret_key_base)
+            token = JWT.encode({ user_id: user.id }, ENV['secret_key_base'])
             refresh_token = generate_refresh_token(user)
 
             # Return the token as a response or handle further actions
