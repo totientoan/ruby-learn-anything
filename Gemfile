@@ -49,10 +49,6 @@ end
 gem 'mysql2'
 gem 'google-id-token'
 gem 'dotenv-rails', groups: [:development, :test, :production]
-<<<<<<< HEAD
-=======
-gem 'active_model_serializers'
->>>>>>> fix(backend): fix connect database
 gem 'jwt'
 
 gem 'google-api-client'
