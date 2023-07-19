@@ -31,4 +31,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-.env
+.env.development
+.env.production
+/config/database.yml
+*.log
