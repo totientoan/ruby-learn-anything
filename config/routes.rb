@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   get 'videos/:file_name', to: 'videos#show', as: 'video_detail'
   get 'videos/create', to: 'videos#create', as: 'video_create'
   post 'videos/store', to: 'videos#store'
+
+  post 'upload_videos/store', to: 'upload_videos#store'
 end
