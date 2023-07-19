@@ -49,8 +49,16 @@ end
 gem 'mysql2'
 gem 'google-id-token'
 gem 'dotenv-rails', groups: [:development, :test, :production]
-gem 'active_model_serializers'
 gem 'jwt'
 
 gem 'google-api-client'
 gem 'googleauth'
+
+gem "delayed_job"
+gem "delayed_job_active_record"
+gem "daemons"
+
+gem 'kaminari' 
+gem 'pager_api'
+gem 'pagy'
+gem 'active_model_serializers'
