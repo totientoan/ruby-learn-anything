@@ -6,10 +6,9 @@ Rails.application.routes.draw do
 
   post '/auth/google_login', to: 'sessions#google_login'
   post '/auth/refresh_token', to: 'sessions#refresh_token'
+  get '/auth/get_info_by_token', to: 'users#get_info_by_token'
+  post '/auth/logout', to: 'users#logout'
   get '/auth/test', to: 'test#test_coi'
-  # authenticate :jwt_middleware do
-  #   post '/auth/google_login2', to: 'sessions#google_login2'
-  # end
 
   get '/courses', to: 'courses#index'
   post '/course', to: 'courses#create'
