@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
                 # Set additional attributes based on your requirements
             end
             user.save()
-            token = JWT.encode({ user_id: user.id }, ENV['secret_key_base'])
+            token = JWT.encode({ user_id: user.id, jti: SecureRandom.uuid }, ENV['secret_key_base'])
             refresh_token = generate_refresh_token(user)
 
             # Return the token as a response or handle further actions
@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
         
             if user
                 # Refresh the token and return the new token
-                new_token = JWT.encode({ user_id: user.id }, Rails.application.secrets.secret_key_base)
+                new_token = JWT.encode({ user_id: user.id, jti: SecureRandom.uuid }, ENV['secret_key_base'])
                 new_refresh_token = generate_refresh_token(user)
                 render json: {
                     user: UserSerializer.new(user),
