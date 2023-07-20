@@ -5,14 +5,13 @@ class CoursesController < ApplicationController
     def index
         search = params[:search]
         level = params[:level]
-        arr_level = level.split(',')
 
         if search
             courses = Course.where("name LIKE ?", "%" + search + "%").page(params[:page] ? params[:page].to_i : 1)        
         end
 
         if level
-            courses = Course.where(level: arr_level).page(params[:page] ? params[:page].to_i : 1)        
+            courses = Course.where(level: level.split(',')).page(params[:page] ? params[:page].to_i : 1)
         end
 
         if !search && !level
