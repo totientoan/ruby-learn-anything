@@ -26,4 +26,11 @@ Rails.application.routes.draw do
 
   post 'images/upload', to: 'images#upload'
   get 'images/list', to: 'images#list_folders'
+
+  post 'chapter', to: 'chapters#create'
+  get 'chapters', to: 'chapters#index'
+  put '/chapter/:id', to: 'chapters#update'
+  get '/chapter/:id', to: 'chapters#show'
+  delete '/chapter/:id', to: 'chapters#destroy'
+
 end
