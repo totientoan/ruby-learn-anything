@@ -25,7 +25,9 @@ class CoursesController < ApplicationController
         course = Course.create!(course_params)
         # UploadVideoJob.perform_later(course.id)
 
-        render json: course, status: :created
+        render json: {
+            course: CourseSerializer.new(course)
+        }, status: :created
     end
     
     def update
@@ -34,15 +36,7 @@ class CoursesController < ApplicationController
         if course 
             course.update!(course_params)
             render json: {
-                course: {
-                    "id" => course.id,
-                    "name" => course.name,
-                    "description" => course.description,
-                    "thumbnail" => course.thumbnail,
-                    "tags" => course.tags,
-                    "level" => course.level,
-                },
-                
+                course: CourseSerializer.new(course)
             }, status: :ok
         else 
             render json: { error: 'Invalid course' }, status: :unprocessable_entity
@@ -57,7 +51,7 @@ class CoursesController < ApplicationController
 
     def destroy
         Course.find(params[:id]).destroy
-        head :no_content
+        render json: {}, status: :ok
     end
 
     private

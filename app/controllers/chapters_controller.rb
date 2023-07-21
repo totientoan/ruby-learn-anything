@@ -3,7 +3,6 @@ class ChaptersController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
 
     def index
-
         if params[:id_course]
             chapters = Chapter.where(id_course: params[:id_course])
         else 
@@ -29,13 +28,7 @@ class ChaptersController < ApplicationController
         if chapter 
             chapter.update!(chapter_params)
             render json: {
-                course: {
-                    "id" => chapter.id,
-                    "name" => chapter.name,
-                    "description" => chapter.description,
-                    "id_course" => chapter.id_course,
-                },
-                
+                chapter: ChapterSerializer.new(chapter)
             }, status: :ok
         else 
             render json: { error: 'Invalid course' }, status: :unprocessable_entity
@@ -52,7 +45,7 @@ class ChaptersController < ApplicationController
 
     def destroy
         Chapter.find(params[:id]).destroy
-        head :no_content
+        render json: {}, status: :ok
     end
 
     private
@@ -66,7 +59,7 @@ class ChaptersController < ApplicationController
     end
 
     def chapter_params
-        params.require(:chapter).permit(:name, :description, :id_course,)
+        params.require(:chapter).permit(:name, :description, :id_course)
     end
 
     def pagination_meta(object) {        
