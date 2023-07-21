@@ -50,19 +50,9 @@ class CoursesController < ApplicationController
     end
 
     def show
-        course = Course.find(params[:id])
-        
-        render json: {
-            course: {
-                "id" => course.id,
-                "name" => course.name,
-                "description" => course.description,
-                "thumbnail" => course.thumbnail,
-                "tags" => course.tags,
-                "level" => course.level,
-            },
-            
-        }, status: :ok
+        course = Course.includes(chapters: { videos: :video_servers }).find(params[:id])
+
+        render json: course, include: ['chapters', 'chapters.videos', 'chapters.videos.video_servers'], serializer: CourseSerializer
     end
 
     def destroy
