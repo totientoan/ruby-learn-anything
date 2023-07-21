@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'videos/store', to: 'videos#store'
 
   post 'upload_videos/store', to: 'upload_videos#store'
+  put 'upload_videos/:id', to: 'upload_videos#update'
 
   post 'images/upload', to: 'images#upload'
   get 'images/list', to: 'images#list_folders'
