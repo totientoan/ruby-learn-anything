@@ -1,9 +1,10 @@
 class UploadVideoServerJob < ApplicationJob
   queue_as :default
   include GoogleDriveService
-  def perform(video_server_id, url)
+  def perform(video_id, url)
     # Do something later
-    video_server = VideoServer.find(video_server_id)
+    video = Video.find(video_id)
+    video_server = video.video_servers
     url_convert = "https://drive.google.com/file/d/#{upload(url)}/view"
     video_server.update(url: url_convert)
   end
